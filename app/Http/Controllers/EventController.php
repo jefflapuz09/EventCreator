@@ -27,6 +27,10 @@ class EventController extends Controller
         $startdate = $request->event_date_from;
         $enddate = $request->event_date_to;
         
+        if($startdate > $enddate){
+            return back()->withErrors("The end date should be greater than the start date.");
+        }
+        
         //I separated it as this serves as a different functionality and for cleanliness of code.
         $events = $this->getDates($startdate, $enddate, $request->days_week);
         
