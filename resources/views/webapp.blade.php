@@ -102,14 +102,14 @@
     
     @if(Session::has('success'))
     <script>
-        toastr.success("Message","{{Session::get('success')}}");
+        toastr.success("{{Session::get('success')}}","Message");
     </script>
     @endif
     
     @if($errors->count() > 0)
         @foreach($errors->all() as $error)
         <script>
-        toastr.error("Message","{{$error}}");
+        toastr.error("{{$error}}","Message");
         </script>
         @endforeach
     @endif
