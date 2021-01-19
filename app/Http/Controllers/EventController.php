@@ -31,22 +31,27 @@ class EventController extends Controller
             return back()->withErrors("The end date should be greater than the start date.");
         }
         
+        //reset the table
+        $records = \App\Event::get();
+        if(!$records->isEmpty()){
+            foreach($records as $record){
+                $record->delete();
+            }
+        }
+        
         //I separated it as this serves as a different functionality and for cleanliness of code.
         $events = $this->getDates($startdate, $enddate, $request->days_week);
         
         if(count($events) > 0){
             foreach($events as $dateselected){
-                //To prevent duplicate
-                if(!(\App\Event::where("event_date", $dateselected)->first())){
-                    $addrecord = new \App\Event;
-                    $addrecord->event_date = $dateselected;
-                    $addrecord->description = $request->event;
-                    $addrecord->save();
-                }
+                $addrecord = new \App\Event;
+                $addrecord->event_date = $dateselected;
+                $addrecord->description = $request->event;
+                $addrecord->save();
             }
         }
         
-        return back()->withSuccess("Event Successfully Saved");
+        return back()->withSuccess("Event Successfully Saved")->withInput();
     }
     
     function getDates($startdate, $enddate, $days_of_week){

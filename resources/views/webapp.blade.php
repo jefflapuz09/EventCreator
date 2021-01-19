@@ -27,7 +27,7 @@
                             {{csrf_field()}}
                         <div class="form-group">
                             <label>Event</label>
-                            <input type="text" required name="event" class="form-control form-control-sm">
+                            <input type="text" value="{{old("event")}}" required name="event" class="form-control form-control-sm">
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-6">
@@ -36,7 +36,7 @@
                                   <div class="input-group-prepend">
                                       <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                   </div>
-                                  <input required name="event_date_from" type="date" class="form-control form-control-sm">
+                                  <input required value="{{old("event_date_from")}}" name="event_date_from" type="date" class="form-control form-control-sm">
                               </div>
                             </div>
                             <div class="col-sm-6">
@@ -45,7 +45,7 @@
                                   <div class="input-group-prepend">
                                       <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                   </div>
-                                  <input required name="event_date_to" type="date" class="form-control form-control-sm">
+                                  <input required value="{{old("event_date_to")}}" name="event_date_to" type="date" class="form-control form-control-sm">
                               </div>
                             </div>
                         </div>
